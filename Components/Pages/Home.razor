@@ -1,0 +1,32 @@
+﻿@page "/"
+
+@inject IDialogService Dialogs
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new Fluent Blazor app.
+
+
+<FluentButton OnClick="OnClick" >Open Panel 1</FluentButton>
+
+
+@code {
+
+    private async Task OnClick(MouseEventArgs obj)
+    {
+        Console.WriteLine("Clicked");
+        var dialog = await Dialogs.ShowPanelAsync<Panel1>(new DialogParameters
+                                                          {
+                                                              Title = "Panel1",
+                                                              Width = "800px",
+                                                              PrimaryAction = null,
+                                                              SecondaryAction = null,
+                                                              PreventDismissOnOverlayClick = true,
+                                                              PreventScroll = true
+                                                          });
+        await dialog.Result;
+    }
+
+}

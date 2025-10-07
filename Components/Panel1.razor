@@ -1,0 +1,29 @@
+@implements IDialogContentComponent
+
+@inject IDialogService Dialogs
+
+<h1>Panel 1</h1>
+
+<FluentTextArea>
+    Type here -- works
+</FluentTextArea>
+
+
+<FluentButton OnClick="OnClick">Open Panel 2</FluentButton>
+
+
+@code {
+
+    private async Task OnClick()
+    {
+        var dialog = await Dialogs.ShowPanelAsync<Panel2>(new DialogParameters
+                                                          {
+                                                              Title = "Panel2",
+                                                              Width = "800px",
+                                                              PrimaryAction = null,
+                                                              SecondaryAction = null,
+                                                              PreventDismissOnOverlayClick = true,
+                                                              PreventScroll = true
+                                                          });
+    }
+}
